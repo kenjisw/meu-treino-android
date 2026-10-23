@@ -1,0 +1,17 @@
+name: meu_treino
+description: Dois programas de musculacao offline.
+publish_to: none
+version: 3.0.0+3
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  webview_flutter: ^4.13.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/index.html
