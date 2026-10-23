@@ -1,0 +1,57 @@
+name: Gerar APK Meu Treino
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'lib/**'
+      - 'assets/**'
+      - 'pubspec.yaml'
+      - '.github/workflows/android.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compilar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Instalar Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Criar projeto Android oficial e copiar treinos
+        run: |
+          flutter create --platforms=android --project-name meu_treino --org com.duotreinos app
+          cp pubspec.yaml app/pubspec.yaml
+          cp lib/main.dart app/lib/main.dart
+          mkdir -p app/assets
+          cp assets/index.html app/assets/index.html
+          rm -rf app/test
+          rm -f app/analysis_options.yaml
+          sed -i 's/android:label="meu_treino"/android:label="Meu Treino"/' app/android/app/src/main/AndroidManifest.xml
+          sed -i 's/minSdk = flutter.minSdkVersion/minSdk = 24/' app/android/app/build.gradle.kts
+      - name: Instalar dependencias
+        working-directory: app
+        run: flutter pub get
+      - name: Verificar codigo
+        working-directory: app
+        run: flutter analyze --no-pub
+      - name: Compilar APK Android
+        working-directory: app
+        run: flutter build apk --release --no-pub
+      - name: Disponibilizar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Meu_Treino_Android_APK
+          path: app/build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
