@@ -33,7 +33,7 @@ jobs:
           mkdir -p _site/icons
           cp assets/index.html _site/index.html
           cp web/manifest.webmanifest web/sw.js _site/
-          cp web/icons/*.png _site/icons/
+          cp web/icons/icon.svg _site/icons/
           touch _site/.nojekyll
           python3 - <<'PY'
           from pathlib import Path
@@ -42,8 +42,8 @@ jobs:
           assert '</head>' in html and '</body>' in html
           headers = """
           <link rel="manifest" href="./manifest.webmanifest">
-          <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
-          <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+          <link rel="icon" type="image/svg+xml" href="./icons/icon.svg">
+          <link rel="apple-touch-icon" href="./icons/icon.svg">
           <meta name="apple-mobile-web-app-capable" content="yes">
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
           <meta name="apple-mobile-web-app-title" content="Meu Treino">
