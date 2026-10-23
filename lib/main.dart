@@ -13,6 +13,7 @@ class MeuTreinoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'Meu Treino',
+        // Dois programas de musculacao disponiveis offline.
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark(useMaterial3: true),
         home: const TelaTreino(),
