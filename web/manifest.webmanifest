@@ -1,0 +1,27 @@
+{
+  "name": "Meu Treino — Academia",
+  "short_name": "Meu Treino",
+  "description": "Treinos feminino e masculino com exercícios explicados, cronômetro e marcação de conclusão. Sem registro de cargas.",
+  "lang": "pt-BR",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b1420",
+  "theme_color": "#0b1420",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
