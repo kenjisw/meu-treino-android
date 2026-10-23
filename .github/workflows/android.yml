@@ -19,9 +19,9 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Baixar projeto
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Configurar Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '17'
@@ -50,7 +50,7 @@ jobs:
         working-directory: app
         run: flutter build apk --release --no-pub
       - name: Disponibilizar APK
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: Meu_Treino_Android_APK
           path: app/build/app/outputs/flutter-apk/app-release.apk
